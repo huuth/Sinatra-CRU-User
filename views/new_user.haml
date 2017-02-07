@@ -1,0 +1,56 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %title New User
+    %link{:href => "data:image/x-icon;,", :rel => "shortcut icon", :type => "image/x-icon"}/
+    %link{:href => "css/bootstrap.min.css", :rel => "stylesheet"}/
+    %link{:href => "css/user.css", :rel => "stylesheet"}/
+  %body
+    .contaner
+      %h1 New User
+      
+      %hr
+      .form
+        %form{:action => '/new', :method => 'post', :enctype => 'multipart/form-data'}
+          .wrap_element
+            %label First Name
+            %span *
+            %input{:type => 'text', :requiredd => '', :name => 'first_name'}
+
+          .wrap_element
+            %label Last Name
+            %span *
+            %input{:type => 'text', :required => '', :name => 'last_name'}
+
+          
+          .wrap_element
+            %label Email
+            %span *
+            %input{:type => 'email', :requiredd => '', :name => 'email'}
+            .err
+              %p= "* " + session[:err_new] if !session[:err_new].empty?
+          .wrap_element
+            %label Password
+            %span *
+            %input{:type => 'password', :required => '', :name => 'password'}
+
+          .wrap_element
+            %label Avatar
+            %input{:type => 'file', :accept => 'image/*image/x-png,image/gif,image/jpeg', :name => 'avatar'}
+
+          #image-upload.image-upload.row
+
+          .wrap_element
+            %label About me
+            %textarea{:type => 'textarea', :required => '', :name => 'about_me'}
+
+          .button
+            %input{:type => 'submit', :value => 'Submit'}
+
+    %script{:src => "js/jquery.min.js"}
+    %script{:src => "js/bootstrap.min.js"}
+    %script{:src => "js/user_cru.js"}

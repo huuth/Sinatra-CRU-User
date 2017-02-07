@@ -1,0 +1,45 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %title Show User
+    %link{:href => "data:image/x-icon;,", :rel => "shortcut icon", :type => "image/x-icon"}/
+    %link{:href => "css/bootstrap.min.css", :rel => "stylesheet"}/
+    %link{:href => "css/user.css", :rel => "stylesheet"}/
+    %link{:href => "css/show.css", :rel => "stylesheet"}/
+
+  %body
+    %h1 Show user
+    .contaner
+      %table
+        %thead
+          %tr
+            %th Avatar
+            %th First Name
+            %th Last Name
+            %th Email
+            %th About me
+            %th Action
+        %tbody
+        %hr
+        - @data.each_with_index do |user, index|
+          %tr
+            %td
+              .image-upload
+                .thumb
+                  %img{:src => "uploads/#{user[:avatar][:filename]}"}
+            %td= user['first_name']
+            %td= user['last_name']
+            %td= user['email']
+            %td= user['about_me']
+            %td
+              %a{:href => "/update?id=#{index}"}
+                %button{:value => "#{index}", :name => 'update_index'} Update
+              
+
+    %script{:src => "js/jquery.min.js"}
+    %script{:src => "js/bootstrap.min.js"}
+    %script{:src => "js/user_cru.js"}

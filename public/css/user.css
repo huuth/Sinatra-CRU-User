@@ -1,0 +1,51 @@
+body{
+  padding-left: 140px;
+}
+
+.wrap_element, h1 {
+  padding: 10px;
+}
+
+.button {
+  padding: 10px;
+} 
+
+#image-upload{
+  margin: 10px;
+}
+
+.thumb {
+  padding: 10px;
+  background-color: #f4f6f9;
+  position: relative;
+  width: 107px;
+  height: 100px;
+  overflow: hidden;
+  display: inline-block;
+  padding: 0 57px;
+  margin-top: 10px;
+  float: left;
+  margin-left: 1.5px;
+  margin-right: 1.5px;
+  border-radius: 4px;
+  border: 1px solid #aeb3ba;
+}
+.thumb img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  margin-bottom: 0;
+  width: auto;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}
+
+input[type="file"] {
+  display: inline-block;
+}
+
+.err {
+  color: red;
+}
