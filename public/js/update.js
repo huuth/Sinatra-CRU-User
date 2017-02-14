@@ -16,7 +16,7 @@ $(function(){
     var file_data = $("#avatar").prop("files")[0];   // Getting the properties of file from file field
     var form_data = new FormData();                  // Creating object of FormData class
     form_data.append("file", file_data)              // Appending parameter named file with properties of file_field to form_data
-    form_data.append("user_id", user_id)                 // Adding extra parameters to form_data
+    form_data.append("id", user_id)                 // Adding extra parameters to form_data
     console.log(user_id);
     $.ajax({
                 url: "/upload_image",

@@ -17,6 +17,7 @@ class WebApp < Sinatra::Base
 	end
 
 	get '/' do
+	  @data
 	  haml :index
 	end
 
@@ -44,7 +45,7 @@ class WebApp < Sinatra::Base
 	    f.write(file.read)
 		end
 	  
-	  @data.to_s
+	  redirect to('/show')
 	end
 
 	get '/show' do
@@ -58,14 +59,34 @@ class WebApp < Sinatra::Base
 		haml :update
 	end
 
+	post '/update' do
+		id = @params[:id].to_i
+		user = @data[id]
+
+		user["first_name"] = @params[:first_name]
+		user["last_name"] = @params[:last_name]
+		user["email"] = @params[:email]
+		user["password"] = @params[:password]
+		user["about_me"] = @params[:about_me]
+
+		@data[id] = user
+		redirect to('/show')
+	end
+
 	post '/upload_image' do
 		@filename = params[:file][:filename]
 		file = params[:file][:tempfile]
 		File.open("./public/uploads/#{@filename}", 'wb') do |f|
 	    f.write(file.read)
-		end
 
-		@data[0][:avatar] = @params[:file]
+		puts params[:id].to_s
+		@data[params[:id].to_i][:avatar] = @params[:file]
+		end
+	end
+
+	get '/delete' do
+		@data.delete_at(@params[:id].to_i)
+		"done"
 	end
 end
 

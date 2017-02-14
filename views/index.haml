@@ -5,13 +5,50 @@
     %meta{:charset => "utf-8"}/
     %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
-    %title New User
+    %title Users
     %link{:href => "data:image/x-icon;,", :rel => "shortcut icon", :type => "image/x-icon"}/
     %link{:href => "css/bootstrap.min.css", :rel => "stylesheet"}/
     %link{:href => "css/user.css", :rel => "stylesheet"}/
-  %body
-    %a{:href => '/new'} New User
+    %link{:href => "css/show.css", :rel => "stylesheet"}/
 
-    %script{:src => "js/jquery-2.1.4.min.js"}
+  %body
+    .contaner
+      %h1 Users
+      %hr
+        .form
+          %form{:action => '/search', :method => 'get', :enctype => 'multipart/form-data'}
+            .wrap_element
+            %input{:type => 'text', :requiredd => '', :name => 'keyword'}
+
+            .button
+              %input{:type => 'submit', :value => 'Search'}
+
+
+      - if !@data.nil?
+        %table
+          %thead
+            %tr
+              %th Avatar
+              %th First Name
+              %th Last Name
+              %th Email
+              %th About me
+              %th Action
+            %hr
+          - @data.each_with_index do |user, index|
+            %tr{:id => "#{index}"}
+              %td
+                .image-upload
+                  .thumb
+                    %img{:src => "uploads/#{user[:avatar][:filename]}"}
+              %td= user['first_name']
+              %td= user['last_name']
+              %td= user['email']
+              %td= user['about_me']
+              %td
+                %button{:value => "#{index}", :name => ''} Delete
+
+
+    %script{:src => "js/jquery.min.js"}
     %script{:src => "js/bootstrap.min.js"}
-    %script{:src => "js/user_cru.js"}
+    %script{:src => "js/delete.js"}

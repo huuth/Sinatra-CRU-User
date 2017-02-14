@@ -18,7 +18,7 @@
       %p= @user_id
       %hr
       .form
-        %form{:action => '/new', :method => 'post', :enctype => 'multipart/form-data'}
+        %form{:action => "/update?id=#{@user_id}", :method => 'post', :enctype => 'multipart/form-data'}
           .wrap_element
             %label First Name
             %span *
